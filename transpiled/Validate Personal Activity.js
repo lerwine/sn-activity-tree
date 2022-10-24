@@ -10,9 +10,7 @@
         if (state > 2) {
             do {
                 if (parseInt(gr.state) < 3) {
-                    notification = new UINotification('demo_notification');
-                    notification.setAttribute('state', 'Cannot be in closed state: One or more dependent activities are not closed.');
-                    notification.send();
+                    current.state.setError('Cannot be in closed state: One or more dependent activities are not closed.');
                     current.setAbortAction(true);
                     return;
                 }
@@ -21,9 +19,7 @@
             do {
                 state = parseInt(gr.state);
                 if (state == 1 || state == 2) {
-                    notification = new UINotification('demo_notification');
-                    notification.setAttribute('state', 'Cannot be in pending state: One or more dependent activities are neither pending, nor closed.');
-                    notification.send();
+                    current.state.setError('Cannot be in pending state: One or more dependent activities are neither pending, nor closed.');
                     current.setAbortAction(true);
                     return;
                 }
